@@ -105,9 +105,13 @@ test.describe('Restful Booker - GET /booking', () => {
     });
 
     test('should return XML when Accept header is application/xml', async () => {
-        await helpers.createBooking(payload1);
+        const createResponse = await helpers.createBooking(payload1);
+        const createBody: BookingResponse = await createResponse.json();
+        const bookingID = createBody.bookingid;
 
-        const response = await helpers.getBooking(1, 'application/xml');
+        console.log("Created booking id is:", bookingID);
+
+        const response = await helpers.getBooking(bookingID, 'application/xml');
         const body = await response.text();
 
         expect(response.status()).toBe(200);
