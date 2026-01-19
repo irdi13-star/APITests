@@ -120,20 +120,17 @@ test.describe('Restful Booker - GET /booking', () => {
     });
 
     test('should return specific booking by ID (second)', async () => {
-        // ✅ CORECT: Creăm booking și extragem ID-ul
         const createResponse = await helpers.createBooking(payload1);
         const createBody: BookingResponse = await createResponse.json();
         const bookingID = createBody.bookingid;
 
         console.log("Created booking id is:", bookingID);
 
-        // Varianta 1: Validare completă cu metodă helper
         const booking = await helpers.verifyBookingById(bookingID, payload1);
         console.log('RESPONSE BODY:\n', JSON.stringify(booking, null, 2));
     });
 
     test('should validate booking structure with Zod schema', async () => {
-        // ✅ CORECT: Await pe json()
         const createResponse = await helpers.createBooking(payload1);
         const createBody: BookingResponse = await createResponse.json();
         const bookingID = createBody.bookingid;
@@ -145,16 +142,12 @@ test.describe('Restful Booker - GET /booking', () => {
 
         expect(response.status()).toBe(200);
 
-        // Varianta 2: Validare cu Zod (aruncă error dacă schema nu e validă)
         expect(() => helpers.validateBookingSchema(booking)).not.toThrow();
-
-        // Sau poți folosi direct parse care returnează datele validate
         const validatedBooking = helpers.validateBookingSchema(booking);
         expect(validatedBooking.firstname).toBe(payload1.firstname);
     });
 
     test('should validate booking structure manually', async () => {
-        // ✅ CORECT: Folosim ID-ul dinamic
         const createResponse = await helpers.createBooking(payload1);
         const createBody: BookingResponse = await createResponse.json();
         const bookingID = createBody.bookingid;
@@ -163,11 +156,7 @@ test.describe('Restful Booker - GET /booking', () => {
         const booking = await response.json();
 
         expect(response.status()).toBe(200);
-
-        // Varianta 3: Validare manuală cu assert method
         helpers.assertBookingStructure(booking);
-
-        // Verificări suplimentare specifice
         expect(booking).toEqual(payload1);
     });
 });
