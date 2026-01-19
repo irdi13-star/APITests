@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { BookingHelpers, Booking } from '../../helpers/bookingHelpers';
+import { BookingHelpers, Booking, BookingResponse } from '../../helpers/bookingHelpers';
 import { payload1, payload2 } from '../../fixtures/payloads';
 
 test.describe('Restful Booker - PUT /booking', () => {
@@ -33,8 +33,11 @@ test.describe('Restful Booker - PUT /booking', () => {
     });
 
     test('should update booking successfully', async () => {
-        await helpers.createBooking(payload1);
-        const response = await helpers.updateBooking(1, payload2, token);
+        const createResponse = await helpers.createBooking(payload1);
+        const createBody: BookingResponse = await createResponse.json();
+        const bookingID = createBody.bookingid;
+        
+        const response = await helpers.updateBooking(bookingID, payload2, token);
         const body: Booking = await response.json();
 
         expect(response.status()).toBe(200);
@@ -42,9 +45,11 @@ test.describe('Restful Booker - PUT /booking', () => {
     });
 
     test('should update booking with Basic Auth', async ({ request }) => {
-        await helpers.createBooking(payload1);
+        const createResponse = await helpers.createBooking(payload1);
+        const createBody: BookingResponse = await createResponse.json();
+        const bookingID = createBody.bookingid;
 
-        const response = await request.put(`${helpers.baseURL}/booking/1`, {
+        const response = await request.put(`${helpers.baseURL}/booking/${bookingID}`, {
             data: payload2,
             headers: {
                 'Authorization': 'Basic YWRtaW46cGFzc3dvcmQxMjM=',
@@ -76,9 +81,11 @@ test.describe('Restful Booker - PUT /booking', () => {
     });
 
     test('should return XML response when Accept is application/xml', async () => {
-        await helpers.createBooking(payload1);
+        const createResponse = await helpers.createBooking(payload1);
+        const createBody: BookingResponse = await createResponse.json();
+        const bookingID = createBody.bookingid;
 
-        const response = await helpers.updateBooking(1, payload2, token, {
+        const response = await helpers.updateBooking(bookingID, payload2, token, {
             'Accept': 'application/xml'
         });
         const body = await response.text();
