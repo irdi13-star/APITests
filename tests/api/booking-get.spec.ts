@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { BookingHelpers, BookingResponse } from '../../helpers/bookingHelpers';
-import { payload1, payload2, payload3 } from '../../fixtures/payloads';
+import { dynamicPayload, payload1, payload2, payload3 } from '../../fixtures/payloads';
 
 test.describe('Restful Booker - GET /booking', () => {
     let helpers: BookingHelpers;
@@ -147,16 +147,18 @@ test.describe('Restful Booker - GET /booking', () => {
         expect(validatedBooking.firstname).toBe(payload1.firstname);
     });
 
-    test('should validate booking structure manually', async () => {
-        const createResponse = await helpers.createBooking(payload1);
+    test('should validate booking structure manually (dynamic testData)', async () => {
+        const createResponse = await helpers.createBooking(dynamicPayload);
         const createBody: BookingResponse = await createResponse.json();
         const bookingID = createBody.bookingid;
+        console.log("Created booking id is:", bookingID);
 
         const response = await helpers.getBooking(bookingID);
         const booking = await response.json();
+        console.log('RESPONSE BODY:\n', JSON.stringify(booking, null, 2));
 
         expect(response.status()).toBe(200);
         helpers.assertBookingStructure(booking);
-        expect(booking).toEqual(payload1);
+        expect(booking).toEqual(dynamicPayload);
     });
 });
