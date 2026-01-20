@@ -33,11 +33,9 @@ test.describe('Restful Booker - PUT /booking', () => {
     });
 
     test('should update booking successfully', async () => {
-        const createResponse = await helpers.createBooking(payload1);
-        const createBody: BookingResponse = await createResponse.json();
-        const bookingID = createBody.bookingid;
+        const createBooking = await helpers.createBookingJsonAndValidateIt(payload1);
         
-        const response = await helpers.updateBooking(bookingID, payload2, token);
+        const response = await helpers.updateBooking(createBooking.bookingid, payload2, token);
         const body: Booking = await response.json();
 
         expect(response.status()).toBe(200);
@@ -45,18 +43,18 @@ test.describe('Restful Booker - PUT /booking', () => {
     });
 
     test('should update booking with Basic Auth', async ({ request }) => {
-        const createResponse = await helpers.createBooking(payload1);
-        const createBody: BookingResponse = await createResponse.json();
-        const bookingID = createBody.bookingid;
+        const createdBooking = await helpers.createBookingJsonAndValidateIt(payload1);
 
-        const response = await request.put(`${helpers.baseURL}/booking/${bookingID}`, {
+        const response = await request.put(`${helpers.baseURL}/booking/${createdBooking.bookingid}`, {
             data: payload2,
             headers: {
                 'Authorization': 'Basic YWRtaW46cGFzc3dvcmQxMjM=',
                 'Accept': 'application/json'
             }
         });
-        const body: Booking = await response.json();
+
+        const body = await response.json();
+        console.log('After put call booking looks like this: \n', body)
 
         expect(response.status()).toBe(200);
         expect(body).toEqual(payload2);
@@ -81,11 +79,9 @@ test.describe('Restful Booker - PUT /booking', () => {
     });
 
     test('should return XML response when Accept is application/xml', async () => {
-        const createResponse = await helpers.createBooking(payload1);
-        const createBody: BookingResponse = await createResponse.json();
-        const bookingID = createBody.bookingid;
+        const createResponse = await helpers.createBookingXmlAndValidateIt(payload1);
 
-        const response = await helpers.updateBooking(bookingID, payload2, token, {
+        const response = await helpers.updateBooking(createResponse.bookingid, payload2, token, {
             'Accept': 'application/xml'
         });
         const body = await response.text();

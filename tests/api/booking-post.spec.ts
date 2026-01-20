@@ -11,62 +11,51 @@ test.describe('Restful Booker - POST /booking', () => {
     });
 
     test('should create a booking and return booking ID', async () => {
-        const response = await helpers.createBooking(payload1);
-        const body: BookingResponse = await response.json();
+        const response = await helpers.createBookingJsonAndValidateIt(payload1);
 
-        expect(response.status()).toBe(200);
-        expect(body.bookingid).toBeGreaterThan(0);
-        expect(body.booking).toEqual(payload1);
+        expect(response.bookingid).toBeGreaterThan(0);
+        expect(response.booking).toEqual(payload1);
     });
 
-    test.skip('should create booking with XML payload', async () => {
-        const response = await helpers.createBooking(payload1, {
-            'Content-Type': 'text/xml'
-        });
-        const body: BookingResponse = await response.json();
+    test('should create booking with XML payload', async () => {
+        const response = await helpers.createBookingXmlAndValidateIt(payload1);
 
-        expect(response.status()).toBe(200);
-        expect(body.bookingid).toBeGreaterThan(0);
-        expect(body.booking).toEqual(payload1);
+        expect(response.bookingid).toBeGreaterThan(0);
+        expect(response.booking).toEqual(payload1);
     });
 
     test('should return 500 for invalid payload', async () => {
-        const response = await helpers.createBooking(badPayload as any);
-        expect(response.status()).toBe(500);
+        const response = await helpers.createBooking(
+            badPayload as any,
+            'application/json',
+            { expectedStatus: 500 }
+        );
+
+        if (typeof response === 'string') {
+            expect(response).toContain('Internal Server Error');
+        } else {
+            expect(response).toHaveProperty('error');
+        }
     });
 
     test('should increment booking ID for multiple bookings', async () => {
-        await helpers.createBooking(payload1);
-        const response = await helpers.createBooking(payload2);
-        const body: BookingResponse = await response.json();
+        const firstBooking = await helpers.createBookingJsonAndValidateIt(payload1);
+        const secondBooking = await helpers.createBookingJsonAndValidateIt(payload2);
 
-        expect(response.status()).toBe(200);
-        expect(body.bookingid).toBeGreaterThan(0);
+        console.log(`First booking id is ${firstBooking.bookingid} and second booking id is ${secondBooking.bookingid}`)
+        expect(firstBooking.bookingid).toBeLessThan(secondBooking.bookingid);
     });
 
     test('should return XML response when Accept is application/xml', async () => {
-        const response = await helpers.createBooking(payload2, {
-            'Accept': 'application/xml'
-        });
-        const body = await response.text();
-
-        expect(response.status()).toBe(200);
-        expect(body).toContain('<?xml');
-        expect(body).toContain('<created-booking>');
+        await helpers.createBookingXmlAndValidateIt(payload2);
     });
 
     test('should accept payload with extra parameters', async () => {
         const extraPayload = { ...payload1, extra: 'bad' };
-        const response = await helpers.createBooking(extraPayload as any);
-
-        expect(response.status()).toBe(200);
+        await helpers.createBooking(extraPayload as any);
     });
 
     test('should return 418 for unsupported Accept header', async () => {
-        const response = await helpers.createBooking(payload1, {
-            'Accept': 'application/ogg'
-        });
-
-        expect(response.status()).toBe(418);
+        await helpers.createBooking(payload1, 'application/oggg', {expectedStatus: 418});
     });
 });
