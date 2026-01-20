@@ -27,25 +27,17 @@ test.describe('Restful Booker - DELETE /booking', () => {
     });
 
     test('should delete existing booking successfully', async () => {
-        const create = await helpers.createBooking(payload1);
-        const body: BookingResponse = await create.json();
-        const bookingID = body.bookingid;
+        const booking = await helpers.createBookingJsonAndValidateIt(payload1);
 
-        console.log("Created booking id is:", bookingID);
-
-        const response = await helpers.deleteBooking(bookingID, token);
+        const response = await helpers.deleteBooking(booking.bookingid, token);
 
         expect(response.status()).toBe(201);
     });
 
     test('should delete booking with Basic Auth', async ({ request }) => {
-        const create = await helpers.createBooking(payload1);
-        const body: BookingResponse = await create.json();
-        const bookingID = body.bookingid;
+        const booking = await helpers.createBookingJsonAndValidateIt(payload1);
 
-        console.log("Created booking id is:", bookingID);
-
-        const response = await request.delete(`${helpers.baseURL}/booking/${bookingID}`, {
+        const response = await request.delete(`${helpers.baseURL}/booking/${booking.bookingid}`, {
             headers: { 'Authorization': 'Basic YWRtaW46cGFzc3dvcmQxMjM=' }
         });
 

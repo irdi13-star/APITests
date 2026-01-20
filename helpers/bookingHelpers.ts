@@ -1,5 +1,6 @@
 import { APIRequestContext, expect } from '@playwright/test';
 import { z } from 'zod';
+import { XMLParser } from 'fast-xml-parser';
 
 export const BookingDatesSchema = z.object({
     checkin: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format'),
@@ -89,35 +90,123 @@ export class BookingHelpers {
         return payload;
     }
 
-    async createBooking(payload: Booking, headers: Record<string, string> = {}) {
+    // async createBooking(payload: Booking, acceptHeader: string = 'application/json', options?: {
+        
+    //     expectedStatus?: number;
+    // }): Promise<CreateBookingResponse> {
+    //     const response = await this.request.post(`${this.baseURL}/booking`, {
+    //         data: payload,
+    //         headers: {
+    //             'Accept': acceptHeader
+    //         }
+    //     });
+
+    //     const expectedStatus = options?.expectedStatus ?? 200;
+    //     expect(response.status()).toBe(expectedStatus);
+
+    //     const responseBody = await response.json();
+    //     console.log('Created booking id is:', responseBody);
+     
+    //     return responseBody as CreateBookingResponse;
+    // }
+
+    async createBooking(
+        payload: Booking,
+        acceptHeader: string = 'application/json',
+        options?: { expectedStatus?: number }
+    ): Promise<CreateBookingResponse | string> {
         const response = await this.request.post(`${this.baseURL}/booking`, {
             data: payload,
-            headers: {
-                'Accept': 'application/json',
-                ...headers
-            }
+            headers: { Accept: acceptHeader }
         });
-        return response;
+
+        const expectedStatus = options?.expectedStatus ?? 200;
+        expect(response.status()).toBe(expectedStatus);
+
+        let responseBody: any;
+        try {
+            // încearcă să parsezi JSON
+            responseBody = await response.json();
+        } catch {
+            // fallback la text pentru erori (500, 400 etc.)
+            responseBody = await response.text();
+        }
+
+        console.log('Created booking response:', responseBody);
+        return responseBody;
     }
+
+
+    async createBookingJsonAndValidateIt(payload: Booking, options?: { expectedStatus?: number }) {
+        const response = await this.createBooking(payload, 'application/json', options);
+        return response as CreateBookingResponse;
+    }
+
+    // async createBookingXml(payload: Booking, options?: { expectedStatus?: number }) {
+    //     const response = await this.createBooking(payload, 'application/xml', options);
+    //     return response as string;
+    // }
+
+    async createBookingXmlAndValidateIt(payload: Booking): Promise<{ bookingid: number; booking: Booking }> {
+        const xmlResponse = await this.createBooking(payload, 'application/xml');
+
+        const parser = new XMLParser();
+        const parsed = parser.parse(xmlResponse as string);
+
+        const root = parsed['created-booking']; // root element
+
+        return {
+            bookingid: Number(root.bookingid),
+            booking: {
+                firstname: root.booking.firstname,
+                lastname: root.booking.lastname,
+                totalprice: Number(root.booking.totalprice),
+                depositpaid: root.booking.depositpaid,
+                additionalneeds: root.booking.additionalneeds,
+                bookingdates: {
+                    checkin: root.booking.bookingdates.checkin,
+                    checkout: root.booking.bookingdates.checkout
+                }
+            }
+        };
+}
 
     async getBooking(id: number, acceptHeader: string = 'application/json') {
         const response = await this.request.get(`${this.baseURL}/booking/${id}`, {
             headers: { 'Accept': acceptHeader }
         });
+
+        expect(response.status()).toBe(200);
+
+        const responseBody = await response.json();
+        console.log('Booking is:', responseBody);
         return response;
     }
 
-    async getBookingSecond(
+    async getBookingAllAcceptances(
         bookingId: number,
         accept: 'application/json' | 'application/xml'
     ) {
-        return this.request.get(`${this.baseURL}/booking/${bookingId}`, {
+        const response = this.request.get(`${this.baseURL}/booking/${bookingId}`, {
             headers: { Accept: accept }
         });
+
+        const responseBody = await (await response).text();
+        console.log('Booking is:\n', responseBody);
+        return response;
+    }
+
+    async getBookings(queryParams: string = '') {
+        const response = await this.request.get(`${this.baseURL}/booking${queryParams}`);
+        const responseBody = await response.text();
+        console.log('Response is:', responseBody);
+        return response;
     }
 
     async getAllBookings(queryParams: string = '') {
         const response = await this.request.get(`${this.baseURL}/booking${queryParams}`);
+        const responseBody = await response.json();
+        console.log('Booking is:', responseBody);
         return response;
     }
 

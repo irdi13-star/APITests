@@ -7,7 +7,7 @@ export const payload1: Booking = {
     lastname: 'Brown',
     totalprice: 111,
     depositpaid: true,
-    additionalneeds: 'Breakfast',
+    additionalneeds: 'Breakfast, Lunch',
     bookingdates: {
         checkin: '2013-02-01',
         checkout: '2013-02-04'
@@ -19,7 +19,7 @@ export const payload2: Booking = {
     lastname: 'White',
     totalprice: 111,
     depositpaid: true,
-    additionalneeds: 'Breakfast',
+    additionalneeds: 'Breakfast, Lunch, Dinner',
     bookingdates: {
         checkin: '2013-02-02',
         checkout: '2013-02-05'
@@ -38,17 +38,34 @@ export const payload3: Booking = {
     }
 };
 
-export const dynamicPayload: Booking = {
-    firstname: faker.person.firstName(),
-    lastname: faker.person.lastName(),
-    totalprice: faker.number.int(1000),
-    depositpaid: true,
-    additionalneeds: 'Breakfast',
-    bookingdates: {
-        checkin: DateTime.now().toFormat('yyyy-MM-dd'),
-        checkout: DateTime.now().plus({ day: 12}).toFormat('yyyy-MM-dd')
-    }
-};
+// export const dynamicPayload: Booking = {
+//     firstname: faker.person.firstName(),
+//     lastname: faker.person.lastName(),
+//     totalprice: faker.number.int(1000),
+//     depositpaid: true,
+//     additionalneeds: 'Breakfast',
+//     bookingdates: {
+//         checkin: DateTime.now().toFormat('yyyy-MM-dd'),
+//         checkout: DateTime.now().plus({ day: 12}).toFormat('yyyy-MM-dd')
+//     }
+// };
+
+export function buildDynamicPayload(): Booking {
+    const checkin = DateTime.now().plus({ days: 1 });
+    const checkout = checkin.plus({ days: 5 });
+
+    return {
+        firstname: faker.person.firstName(),
+        lastname: faker.person.lastName(),
+        totalprice: faker.number.int({ min: 50, max: 999 }),
+        depositpaid: faker.datatype.boolean(),
+        additionalneeds: 'Breakfast',
+        bookingdates: {
+            checkin: checkin.toFormat('yyyy-MM-dd'),
+            checkout: checkout.toFormat('yyyy-MM-dd')
+        }
+    };
+}
 
 export const badPayload = {
     lastname: 'Brown',
