@@ -1,6 +1,6 @@
 
-import { test, expect } from '@playwright/test';
-import { BookingHelpers, BookingResponse } from '../../helpers/bookingHelpers';
+import { test, expect } from "../../testSetup/testWithTestrail";
+import { BookingHelpers } from '../../helpers/bookingHelpers';
 import { payload1, payload2, badPayload } from '../../fixtures/payloads';
 
 test.describe('Restful Booker - POST /booking', () => {

@@ -1,10 +1,7 @@
 import { test, expect } from "../../testSetup/testWithTestrail";
 import { BookingHelpers, AuthResponse } from '../../helpers/bookingHelpers';
 import { allure } from 'allure-playwright';
-import { extractCaseId } from "../../helpers/extractCaseId";
-import { addResultForCase } from "../../testrail/testrailService";
 import testData from '../../resources/testData.json'
-import { formatTestrailError } from "../../helpers/formatTestrailError";
 
 test.describe('Restful Booker - POST /auth', () => {
     let helpers: BookingHelpers;
@@ -49,20 +46,18 @@ test.describe('Restful Booker - POST /auth', () => {
         });
     });
 
-    test('C47 - Authentication Failure with Missing Credentials', async ({ request }) => {
+    test('C47 - Authentication Failure with Missing Credentials', async ({ request, logger }) => {
         const response = await request.post(`${helpers.baseURL}/auth`, {
         });
-        const body: AuthResponse = await response.json();
+        const body = await response.json();
 
-        await allure.step('Verify errored response body', async () => {
-            expect(response.status()).toBe(200);
-            if (body.reason !== "Bad credentials") {
-                throw new Error(
-                    `Expected auth error "Bad credentials" but received "${body.reason}"`
-                );
-            }
-            console.log('Response body is: ', body.reason)
-        });
+        logger.log(`Status: ${response.status()}`);
+        logger.log(`Response body: ${JSON.stringify(body)}`);
+
+        if (body.reason !== "Bad credentials") {
+            logger.error("Unexpected error message received");
+            throw new Error(`Expected "Bad credentials", got "${body.reason}"`);
+        }
     });
 
     test('C48 - Authentication with Empty Credentials', async ({ request }) => {

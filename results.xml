@@ -1,20 +1,16 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="3.2778530000001194">
-<testsuite name="api/booking-delete.spec.ts" timestamp="2026-01-21T12:48:56.084Z" hostname="chromium" tests="1" failures="0" skipped="0" time="2.118" errors="0">
-<testcase name="Restful Booker - DELETE /booking › C70 - Delete Booking - Booking Already Deleted" classname="api/booking-delete.spec.ts" time="2.118">
+<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="3.363026999999769">
+<testsuite name="api/health.spec.ts" timestamp="2026-01-21T13:17:05.773Z" hostname="chromium" tests="2" failures="0" skipped="0" time="2.43" errors="0">
+<testcase name="Restful Booker - Health Checks › C97 - should respond to /ping with 201" classname="api/health.spec.ts" time="1.559">
 <system-out>
-<![CDATA[Created booking response: {
-  bookingid: [33m4475[39m,
-  booking: {
-    firstname: [32m'Sally'[39m,
-    lastname: [32m'Brown'[39m,
-    totalprice: [33m111[39m,
-    depositpaid: [33mtrue[39m,
-    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
-    additionalneeds: [32m'Breakfast, Lunch'[39m
-  }
-}
-Response is: Created
-Response is: Method Not Allowed
+<![CDATA[[LOG] Response Text:
+Created
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - Health Checks › C98 - should return 404 for non-existent routes" classname="api/health.spec.ts" time="0.871">
+<system-out>
+<![CDATA[[LOG] Response Text:
+Not Found
 ]]>
 </system-out>
 </testcase>

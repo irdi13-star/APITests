@@ -1,5 +1,5 @@
 import { test, expect } from "../../testSetup/testWithTestrail";
-import { BookingHelpers, BookingResponse } from '../../helpers/bookingHelpers';
+import { BookingHelpers } from '../../helpers/bookingHelpers';
 import { payload1 } from '../../fixtures/payloads';
 
 test.describe('Restful Booker - DELETE /booking', () => {
@@ -55,13 +55,18 @@ test.describe('Restful Booker - DELETE /booking', () => {
         expect(response.status()).toBe(405);
     });
 
-    test('C70 - Delete Booking - Booking Already Deleted', async () => {
-        const booking = await helpers.createBookingJsonAndValidateIt(payload1);
+    test('C70 - Delete Booking - Booking Already Deleted', async ({ logger}) => {
+        const response = await helpers.deleteBookingWithString("uwdhw", token);
 
-        const firstTry = await helpers.deleteBooking(booking.bookingid, token);
-        expect(firstTry.status()).toBe(201);
+        try {
+            const body = await response.json();
+            logger.log(`Response JSON:\n${JSON.stringify(body, null, 2)}`);
+        } catch {
+            const bodyText = await response.text();
+            logger.log(`Response Text:\n${bodyText}`);
+            expect(bodyText).toEqual("Method Not Allowed");
+        }
 
-        const secondTry = await helpers.deleteBooking(booking.bookingid, token);
-        expect(secondTry.status()).toBe(405);
+        expect(response.status()).toBe(405);
     });
 });

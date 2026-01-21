@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "../../testSetup/testWithTestrail";
 import { BookingHelpers, CreateBookingResponse } from '../../helpers/bookingHelpers';
 import { payload1, payload2, payload3, buildDynamicPayload } from '../../fixtures/payloads';
 import { XMLParser } from 'fast-xml-parser';
