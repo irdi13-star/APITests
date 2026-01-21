@@ -45,7 +45,9 @@ export default defineConfig({
       node_version: process.version,
       os: process.platform,
     },
-  }],],
+    }],
+    ["list"],
+    ["junit", { outputFile: "results.xml" }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */

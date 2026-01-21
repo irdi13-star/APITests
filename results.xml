@@ -1,0 +1,812 @@
+<testsuites id="" name="" tests="35" failures="0" skipped="1" errors="0" time="4.409096">
+<testsuite name="api/auth.spec.ts" timestamp="2026-01-21T11:08:23.542Z" hostname="chromium" tests="2" failures="0" skipped="0" time="3.483" errors="0">
+<testcase name="Restful Booker - POST /auth › C45 - Successful Authentication with Valid Credentials" classname="api/auth.spec.ts" time="1.77">
+</testcase>
+<testcase name="Restful Booker - POST /auth › C46 - Authentication Failure with Invalid Credentials" classname="api/auth.spec.ts" time="1.713">
+</testcase>
+</testsuite>
+<testsuite name="api/booking-delete.spec.ts" timestamp="2026-01-21T11:08:23.542Z" hostname="chromium" tests="5" failures="0" skipped="0" time="3.578" errors="0">
+<testcase name="Restful Booker - DELETE /booking › should return 403 without authorization" classname="api/booking-delete.spec.ts" time="0.859">
+</testcase>
+<testcase name="Restful Booker - DELETE /booking › should return 403 with invalid credentials" classname="api/booking-delete.spec.ts" time="1.009">
+</testcase>
+<testcase name="Restful Booker - DELETE /booking › should delete existing booking successfully" classname="api/booking-delete.spec.ts" time="0.958">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3688[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - DELETE /booking › should delete booking with Basic Auth" classname="api/booking-delete.spec.ts" time="0.464">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3693[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - DELETE /booking › should return 405 for non-existent booking" classname="api/booking-delete.spec.ts" time="0.288">
+</testcase>
+</testsuite>
+<testsuite name="api/booking-get.spec.ts" timestamp="2026-01-21T11:08:23.542Z" hostname="chromium" tests="12" failures="0" skipped="0" time="5.421" errors="0">
+<testcase name="Restful Booker - GET /booking › should return all booking IDs" classname="api/booking-get.spec.ts" time="0.76">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3694[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+Created booking response: {
+  bookingid: [33m3696[39m,
+  booking: {
+    firstname: [32m'Geoff'[39m,
+    lastname: [32m'White'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-02'[39m, checkout: [32m'2013-02-05'[39m },
+    additionalneeds: [32m'Breakfast, Lunch, Dinner'[39m
+  }
+}
+Booking is: [
+  { bookingid: [33m2246[39m }, { bookingid: [33m3054[39m }, { bookingid: [33m652[39m },
+  { bookingid: [33m1564[39m }, { bookingid: [33m2108[39m }, { bookingid: [33m3011[39m },
+  { bookingid: [33m2287[39m }, { bookingid: [33m1700[39m }, { bookingid: [33m1409[39m },
+  { bookingid: [33m1422[39m }, { bookingid: [33m2189[39m }, { bookingid: [33m2959[39m },
+  { bookingid: [33m2546[39m }, { bookingid: [33m2513[39m }, { bookingid: [33m1303[39m },
+  { bookingid: [33m1012[39m }, { bookingid: [33m632[39m },  { bookingid: [33m1781[39m },
+  { bookingid: [33m3431[39m }, { bookingid: [33m3143[39m }, { bookingid: [33m980[39m },
+  { bookingid: [33m1096[39m }, { bookingid: [33m3189[39m }, { bookingid: [33m3117[39m },
+  { bookingid: [33m3694[39m }, { bookingid: [33m2382[39m }, { bookingid: [33m1155[39m },
+  { bookingid: [33m1219[39m }, { bookingid: [33m1295[39m }, { bookingid: [33m2204[39m },
+  { bookingid: [33m2076[39m }, { bookingid: [33m3483[39m }, { bookingid: [33m11[39m },
+  { bookingid: [33m2050[39m }, { bookingid: [33m745[39m },  { bookingid: [33m1078[39m },
+  { bookingid: [33m2500[39m }, { bookingid: [33m3105[39m }, { bookingid: [33m876[39m },
+  { bookingid: [33m2255[39m }, { bookingid: [33m2914[39m }, { bookingid: [33m1338[39m },
+  { bookingid: [33m3040[39m }, { bookingid: [33m2427[39m }, { bookingid: [33m3417[39m },
+  { bookingid: [33m532[39m },  { bookingid: [33m974[39m },  { bookingid: [33m74[39m },
+  { bookingid: [33m2553[39m }, { bookingid: [33m2791[39m }, { bookingid: [33m3551[39m },
+  { bookingid: [33m3538[39m }, { bookingid: [33m1732[39m }, { bookingid: [33m21[39m },
+  { bookingid: [33m1043[39m }, { bookingid: [33m1097[39m }, { bookingid: [33m3324[39m },
+  { bookingid: [33m1840[39m }, { bookingid: [33m1315[39m }, { bookingid: [33m3170[39m },
+  { bookingid: [33m843[39m },  { bookingid: [33m1407[39m }, { bookingid: [33m2276[39m },
+  { bookingid: [33m3479[39m }, { bookingid: [33m936[39m },  { bookingid: [33m2181[39m },
+  { bookingid: [33m776[39m },  { bookingid: [33m2836[39m }, { bookingid: [33m2364[39m },
+  { bookingid: [33m3167[39m }, { bookingid: [33m580[39m },  { bookingid: [33m1565[39m },
+  { bookingid: [33m2725[39m }, { bookingid: [33m1334[39m }, { bookingid: [33m742[39m },
+  { bookingid: [33m2772[39m }, { bookingid: [33m688[39m },  { bookingid: [33m2627[39m },
+  { bookingid: [33m2877[39m }, { bookingid: [33m2547[39m }, { bookingid: [33m3162[39m },
+  { bookingid: [33m921[39m },  { bookingid: [33m712[39m },  { bookingid: [33m3165[39m },
+  { bookingid: [33m3291[39m }, { bookingid: [33m113[39m },  { bookingid: [33m2574[39m },
+  { bookingid: [33m609[39m },  { bookingid: [33m995[39m },  { bookingid: [33m1708[39m },
+  { bookingid: [33m2043[39m }, { bookingid: [33m2491[39m }, { bookingid: [33m1540[39m },
+  { bookingid: [33m208[39m },  { bookingid: [33m2264[39m }, { bookingid: [33m705[39m },
+  { bookingid: [33m1832[39m }, { bookingid: [33m2055[39m }, { bookingid: [33m2443[39m },
+  { bookingid: [33m1049[39m },
+  ... 2424 more items
+]
+[
+  { bookingid: [33m2246[39m }, { bookingid: [33m3054[39m }, { bookingid: [33m652[39m },
+  { bookingid: [33m1564[39m }, { bookingid: [33m2108[39m }, { bookingid: [33m3011[39m },
+  { bookingid: [33m2287[39m }, { bookingid: [33m1700[39m }, { bookingid: [33m1409[39m },
+  { bookingid: [33m1422[39m }, { bookingid: [33m2189[39m }, { bookingid: [33m2959[39m },
+  { bookingid: [33m2546[39m }, { bookingid: [33m2513[39m }, { bookingid: [33m1303[39m },
+  { bookingid: [33m1012[39m }, { bookingid: [33m632[39m },  { bookingid: [33m1781[39m },
+  { bookingid: [33m3431[39m }, { bookingid: [33m3143[39m }, { bookingid: [33m980[39m },
+  { bookingid: [33m1096[39m }, { bookingid: [33m3189[39m }, { bookingid: [33m3117[39m },
+  { bookingid: [33m3694[39m }, { bookingid: [33m2382[39m }, { bookingid: [33m1155[39m },
+  { bookingid: [33m1219[39m }, { bookingid: [33m1295[39m }, { bookingid: [33m2204[39m },
+  { bookingid: [33m2076[39m }, { bookingid: [33m3483[39m }, { bookingid: [33m11[39m },
+  { bookingid: [33m2050[39m }, { bookingid: [33m745[39m },  { bookingid: [33m1078[39m },
+  { bookingid: [33m2500[39m }, { bookingid: [33m3105[39m }, { bookingid: [33m876[39m },
+  { bookingid: [33m2255[39m }, { bookingid: [33m2914[39m }, { bookingid: [33m1338[39m },
+  { bookingid: [33m3040[39m }, { bookingid: [33m2427[39m }, { bookingid: [33m3417[39m },
+  { bookingid: [33m532[39m },  { bookingid: [33m974[39m },  { bookingid: [33m74[39m },
+  { bookingid: [33m2553[39m }, { bookingid: [33m2791[39m }, { bookingid: [33m3551[39m },
+  { bookingid: [33m3538[39m }, { bookingid: [33m1732[39m }, { bookingid: [33m21[39m },
+  { bookingid: [33m1043[39m }, { bookingid: [33m1097[39m }, { bookingid: [33m3324[39m },
+  { bookingid: [33m1840[39m }, { bookingid: [33m1315[39m }, { bookingid: [33m3170[39m },
+  { bookingid: [33m843[39m },  { bookingid: [33m1407[39m }, { bookingid: [33m2276[39m },
+  { bookingid: [33m3479[39m }, { bookingid: [33m936[39m },  { bookingid: [33m2181[39m },
+  { bookingid: [33m776[39m },  { bookingid: [33m2836[39m }, { bookingid: [33m2364[39m },
+  { bookingid: [33m3167[39m }, { bookingid: [33m580[39m },  { bookingid: [33m1565[39m },
+  { bookingid: [33m2725[39m }, { bookingid: [33m1334[39m }, { bookingid: [33m742[39m },
+  { bookingid: [33m2772[39m }, { bookingid: [33m688[39m },  { bookingid: [33m2627[39m },
+  { bookingid: [33m2877[39m }, { bookingid: [33m2547[39m }, { bookingid: [33m3162[39m },
+  { bookingid: [33m921[39m },  { bookingid: [33m712[39m },  { bookingid: [33m3165[39m },
+  { bookingid: [33m3291[39m }, { bookingid: [33m113[39m },  { bookingid: [33m2574[39m },
+  { bookingid: [33m609[39m },  { bookingid: [33m995[39m },  { bookingid: [33m1708[39m },
+  { bookingid: [33m2043[39m }, { bookingid: [33m2491[39m }, { bookingid: [33m1540[39m },
+  { bookingid: [33m208[39m },  { bookingid: [33m2264[39m }, { bookingid: [33m705[39m },
+  { bookingid: [33m1832[39m }, { bookingid: [33m2055[39m }, { bookingid: [33m2443[39m },
+  { bookingid: [33m1049[39m },
+  ... 2424 more items
+]
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - GET /booking › should filter bookings by firstname" classname="api/booking-get.spec.ts" time="0.431">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3698[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+Created booking response: {
+  bookingid: [33m3700[39m,
+  booking: {
+    firstname: [32m'Geoff'[39m,
+    lastname: [32m'White'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-02'[39m, checkout: [32m'2013-02-05'[39m },
+    additionalneeds: [32m'Breakfast, Lunch, Dinner'[39m
+  }
+}
+Booking is: [
+  { bookingid: [33m2270[39m },
+  { bookingid: [33m2315[39m },
+  { bookingid: [33m3702[39m },
+  { bookingid: [33m2283[39m },
+  { bookingid: [33m2278[39m },
+  { bookingid: [33m2279[39m },
+  { bookingid: [33m2273[39m },
+  { bookingid: [33m2303[39m },
+  { bookingid: [33m2321[39m },
+  { bookingid: [33m2306[39m },
+  { bookingid: [33m3696[39m },
+  { bookingid: [33m3700[39m },
+  { bookingid: [33m2313[39m },
+  { bookingid: [33m2269[39m }
+]
+[
+  { bookingid: [33m2270[39m },
+  { bookingid: [33m2315[39m },
+  { bookingid: [33m3702[39m },
+  { bookingid: [33m2283[39m },
+  { bookingid: [33m2278[39m },
+  { bookingid: [33m2279[39m },
+  { bookingid: [33m2273[39m },
+  { bookingid: [33m2303[39m },
+  { bookingid: [33m2321[39m },
+  { bookingid: [33m2306[39m },
+  { bookingid: [33m3696[39m },
+  { bookingid: [33m3700[39m },
+  { bookingid: [33m2313[39m },
+  { bookingid: [33m2269[39m }
+]
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - GET /booking › should filter bookings by lastname" classname="api/booking-get.spec.ts" time="0.468">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3699[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+Created booking response: {
+  bookingid: [33m3702[39m,
+  booking: {
+    firstname: [32m'Geoff'[39m,
+    lastname: [32m'White'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-02'[39m, checkout: [32m'2013-02-05'[39m },
+    additionalneeds: [32m'Breakfast, Lunch, Dinner'[39m
+  }
+}
+Booking is: [
+  { bookingid: [33m2270[39m },
+  { bookingid: [33m2315[39m },
+  { bookingid: [33m3702[39m },
+  { bookingid: [33m2283[39m },
+  { bookingid: [33m2278[39m },
+  { bookingid: [33m2279[39m },
+  { bookingid: [33m2273[39m },
+  { bookingid: [33m2303[39m },
+  { bookingid: [33m2321[39m },
+  { bookingid: [33m2306[39m },
+  { bookingid: [33m3696[39m },
+  { bookingid: [33m3700[39m },
+  { bookingid: [33m2313[39m },
+  { bookingid: [33m123[39m },
+  { bookingid: [33m2269[39m }
+]
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - GET /booking › should filter bookings by checkin date" classname="api/booking-get.spec.ts" time="0.72">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3705[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+Created booking response: {
+  bookingid: [33m3710[39m,
+  booking: {
+    firstname: [32m'Geoff'[39m,
+    lastname: [32m'White'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-02'[39m, checkout: [32m'2013-02-05'[39m },
+    additionalneeds: [32m'Breakfast, Lunch, Dinner'[39m
+  }
+}
+Booking is: [
+  { bookingid: [33m2246[39m }, { bookingid: [33m3054[39m }, { bookingid: [33m652[39m },
+  { bookingid: [33m1564[39m }, { bookingid: [33m2108[39m }, { bookingid: [33m3011[39m },
+  { bookingid: [33m2287[39m }, { bookingid: [33m1700[39m }, { bookingid: [33m1409[39m },
+  { bookingid: [33m1422[39m }, { bookingid: [33m2189[39m }, { bookingid: [33m2959[39m },
+  { bookingid: [33m2546[39m }, { bookingid: [33m2513[39m }, { bookingid: [33m1303[39m },
+  { bookingid: [33m1012[39m }, { bookingid: [33m632[39m },  { bookingid: [33m1781[39m },
+  { bookingid: [33m3431[39m }, { bookingid: [33m3143[39m }, { bookingid: [33m980[39m },
+  { bookingid: [33m1096[39m }, { bookingid: [33m3189[39m }, { bookingid: [33m3707[39m },
+  { bookingid: [33m3117[39m }, { bookingid: [33m2382[39m }, { bookingid: [33m1155[39m },
+  { bookingid: [33m1219[39m }, { bookingid: [33m1295[39m }, { bookingid: [33m2204[39m },
+  { bookingid: [33m2076[39m }, { bookingid: [33m3483[39m }, { bookingid: [33m11[39m },
+  { bookingid: [33m2050[39m }, { bookingid: [33m745[39m },  { bookingid: [33m1078[39m },
+  { bookingid: [33m2500[39m }, { bookingid: [33m3105[39m }, { bookingid: [33m876[39m },
+  { bookingid: [33m2255[39m }, { bookingid: [33m2914[39m }, { bookingid: [33m1338[39m },
+  { bookingid: [33m3040[39m }, { bookingid: [33m2427[39m }, { bookingid: [33m3417[39m },
+  { bookingid: [33m532[39m },  { bookingid: [33m974[39m },  { bookingid: [33m74[39m },
+  { bookingid: [33m2553[39m }, { bookingid: [33m2791[39m }, { bookingid: [33m3551[39m },
+  { bookingid: [33m3538[39m }, { bookingid: [33m1732[39m }, { bookingid: [33m21[39m },
+  { bookingid: [33m1043[39m }, { bookingid: [33m1097[39m }, { bookingid: [33m3324[39m },
+  { bookingid: [33m1840[39m }, { bookingid: [33m1315[39m }, { bookingid: [33m3170[39m },
+  { bookingid: [33m843[39m },  { bookingid: [33m1407[39m }, { bookingid: [33m3479[39m },
+  { bookingid: [33m936[39m },  { bookingid: [33m2181[39m }, { bookingid: [33m776[39m },
+  { bookingid: [33m2836[39m }, { bookingid: [33m2364[39m }, { bookingid: [33m3167[39m },
+  { bookingid: [33m580[39m },  { bookingid: [33m1565[39m }, { bookingid: [33m2725[39m },
+  { bookingid: [33m1334[39m }, { bookingid: [33m742[39m },  { bookingid: [33m2772[39m },
+  { bookingid: [33m688[39m },  { bookingid: [33m2627[39m }, { bookingid: [33m2877[39m },
+  { bookingid: [33m2547[39m }, { bookingid: [33m3162[39m }, { bookingid: [33m921[39m },
+  { bookingid: [33m712[39m },  { bookingid: [33m3165[39m }, { bookingid: [33m3291[39m },
+  { bookingid: [33m113[39m },  { bookingid: [33m2574[39m }, { bookingid: [33m609[39m },
+  { bookingid: [33m995[39m },  { bookingid: [33m1708[39m }, { bookingid: [33m2043[39m },
+  { bookingid: [33m2491[39m }, { bookingid: [33m1540[39m }, { bookingid: [33m208[39m },
+  { bookingid: [33m2264[39m }, { bookingid: [33m705[39m },  { bookingid: [33m1832[39m },
+  { bookingid: [33m2055[39m }, { bookingid: [33m2443[39m }, { bookingid: [33m1049[39m },
+  { bookingid: [33m61[39m },
+  ... 2417 more items
+]
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - GET /booking › should filter bookings by checkout date" classname="api/booking-get.spec.ts" time="0.432">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3704[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+Created booking response: {
+  bookingid: [33m3707[39m,
+  booking: {
+    firstname: [32m'Geoff'[39m,
+    lastname: [32m'White'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-02'[39m, checkout: [32m'2013-02-05'[39m },
+    additionalneeds: [32m'Breakfast, Lunch, Dinner'[39m
+  }
+}
+Booking is: [
+  { bookingid: [33m3707[39m }, { bookingid: [33m3694[39m },
+  { bookingid: [33m2276[39m }, { bookingid: [33m2271[39m },
+  { bookingid: [33m2270[39m }, { bookingid: [33m3711[39m },
+  { bookingid: [33m3712[39m }, { bookingid: [33m2302[39m },
+  { bookingid: [33m2268[39m }, { bookingid: [33m2266[39m },
+  { bookingid: [33m2315[39m }, { bookingid: [33m3702[39m },
+  { bookingid: [33m2285[39m }, { bookingid: [33m2283[39m },
+  { bookingid: [33m2274[39m }, { bookingid: [33m2307[39m },
+  { bookingid: [33m3705[39m }, { bookingid: [33m3706[39m },
+  { bookingid: [33m2278[39m }, { bookingid: [33m2279[39m },
+  { bookingid: [33m3710[39m }, { bookingid: [33m3699[39m },
+  { bookingid: [33m2296[39m }, { bookingid: [33m2273[39m },
+  { bookingid: [33m2303[39m }, { bookingid: [33m2298[39m },
+  { bookingid: [33m2321[39m }, { bookingid: [33m2280[39m },
+  { bookingid: [33m3704[39m }, { bookingid: [33m2293[39m },
+  { bookingid: [33m2306[39m }, { bookingid: [33m2316[39m },
+  { bookingid: [33m3696[39m }, { bookingid: [33m2305[39m },
+  { bookingid: [33m3700[39m }, { bookingid: [33m2313[39m },
+  { bookingid: [33m2288[39m }, { bookingid: [33m2269[39m },
+  { bookingid: [33m3698[39m }
+]
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - GET /booking › should filter by checkin and checkout dates" classname="api/booking-get.spec.ts" time="0.589">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3708[39m,
+  booking: {
+    firstname: [32m'Neva'[39m,
+    lastname: [32m'Volkman'[39m,
+    totalprice: [33m695[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2026-01-22'[39m, checkout: [32m'2026-01-27'[39m },
+    additionalneeds: [32m'Breakfast'[39m
+  }
+}
+Created booking response: {
+  bookingid: [33m3713[39m,
+  booking: {
+    firstname: [32m'Bernice'[39m,
+    lastname: [32m'Kuhic'[39m,
+    totalprice: [33m143[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2026-01-22'[39m, checkout: [32m'2026-01-27'[39m },
+    additionalneeds: [32m'Breakfast'[39m
+  }
+}
+Created booking response: {
+  bookingid: [33m3716[39m,
+  booking: {
+    firstname: [32m'Guido'[39m,
+    lastname: [32m'Kemmer'[39m,
+    totalprice: [33m217[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2026-01-22'[39m, checkout: [32m'2026-01-27'[39m },
+    additionalneeds: [32m'Breakfast'[39m
+  }
+}
+Booking is: [
+  { bookingid: [33m3672[39m },
+  { bookingid: [33m2507[39m },
+  { bookingid: [33m2311[39m },
+  { bookingid: [33m1134[39m },
+  { bookingid: [33m2295[39m },
+  { bookingid: [33m3708[39m },
+  { bookingid: [33m3713[39m },
+  { bookingid: [33m3248[39m },
+  { bookingid: [33m2308[39m },
+  { bookingid: [33m3523[39m },
+  { bookingid: [33m3716[39m },
+  { bookingid: [33m2314[39m },
+  { bookingid: [33m2894[39m }
+]
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - GET /booking › should filter by name and dates" classname="api/booking-get.spec.ts" time="0.619">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3706[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+Created booking response: {
+  bookingid: [33m3711[39m,
+  booking: {
+    firstname: [32m'Geoff'[39m,
+    lastname: [32m'White'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-02'[39m, checkout: [32m'2013-02-05'[39m },
+    additionalneeds: [32m'Breakfast, Lunch, Dinner'[39m
+  }
+}
+Created booking response: {
+  bookingid: [33m3715[39m,
+  booking: {
+    firstname: [32m'Bob'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-03'[39m, checkout: [32m'2013-02-06'[39m },
+    additionalneeds: [32m'Breakfast'[39m
+  }
+}
+Booking is: [
+  { bookingid: [33m3707[39m }, { bookingid: [33m2270[39m },
+  { bookingid: [33m3711[39m }, { bookingid: [33m2315[39m },
+  { bookingid: [33m3702[39m }, { bookingid: [33m2283[39m },
+  { bookingid: [33m2278[39m }, { bookingid: [33m2279[39m },
+  { bookingid: [33m3710[39m }, { bookingid: [33m2273[39m },
+  { bookingid: [33m2303[39m }, { bookingid: [33m2321[39m },
+  { bookingid: [33m2306[39m }, { bookingid: [33m3696[39m },
+  { bookingid: [33m3700[39m }, { bookingid: [33m2313[39m },
+  { bookingid: [33m2269[39m }
+]
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - GET /booking › should return 500 for invalid date format" classname="api/booking-get.spec.ts" time="0.156">
+<system-out>
+<![CDATA[Response is: Internal Server Error
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - GET /booking › should return XML when Accept header is application/xml" classname="api/booking-get.spec.ts" time="0.316">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3712[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+Booking is:
+ <?xml version='1.0'?>
+<booking>
+    <firstname>Sally</firstname>
+    <lastname>Brown</lastname>
+    <totalprice>111</totalprice>
+    <depositpaid>true</depositpaid>
+    <bookingdates>
+        <checkin>2013-02-01</checkin>
+        <checkout>2013-02-04</checkout>
+    </bookingdates>
+    <additionalneeds>Breakfast, Lunch</additionalneeds>
+</booking>
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - GET /booking › should return specific booking by ID (second)" classname="api/booking-get.spec.ts" time="0.293">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3717[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+Booking is: {
+  firstname: [32m'Sally'[39m,
+  lastname: [32m'Brown'[39m,
+  totalprice: [33m111[39m,
+  depositpaid: [33mtrue[39m,
+  bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+  additionalneeds: [32m'Breakfast, Lunch'[39m
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - GET /booking › should validate booking structure with Zod schema" classname="api/booking-get.spec.ts" time="0.312">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3719[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+Booking is: {
+  firstname: [32m'Sally'[39m,
+  lastname: [32m'Brown'[39m,
+  totalprice: [33m111[39m,
+  depositpaid: [33mtrue[39m,
+  bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+  additionalneeds: [32m'Breakfast, Lunch'[39m
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - GET /booking › should validate booking structure manually (dynamic testData)" classname="api/booking-get.spec.ts" time="0.325">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3720[39m,
+  booking: {
+    firstname: [32m'Amy'[39m,
+    lastname: [32m'Baumbach'[39m,
+    totalprice: [33m774[39m,
+    depositpaid: [33mfalse[39m,
+    bookingdates: { checkin: [32m'2026-01-22'[39m, checkout: [32m'2026-01-27'[39m },
+    additionalneeds: [32m'Breakfast'[39m
+  }
+}
+Booking is: {
+  firstname: [32m'Amy'[39m,
+  lastname: [32m'Baumbach'[39m,
+  totalprice: [33m774[39m,
+  depositpaid: [33mfalse[39m,
+  bookingdates: { checkin: [32m'2026-01-22'[39m, checkout: [32m'2026-01-27'[39m },
+  additionalneeds: [32m'Breakfast'[39m
+}
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="api/booking-post.spec.ts" timestamp="2026-01-21T11:08:23.542Z" hostname="chromium" tests="7" failures="0" skipped="0" time="1.169" errors="0">
+<testcase name="Restful Booker - POST /booking › should create a booking and return booking ID" classname="api/booking-post.spec.ts" time="0.143">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3721[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - POST /booking › should create booking with XML payload" classname="api/booking-post.spec.ts" time="0.147">
+<system-out>
+<![CDATA[Created booking response: <?xml version='1.0'?>
+<created-booking>
+    <bookingid>3722</bookingid>
+    <booking>
+        <firstname>Sally</firstname>
+        <lastname>Brown</lastname>
+        <totalprice>111</totalprice>
+        <depositpaid>true</depositpaid>
+        <bookingdates>
+            <checkin>2013-02-01</checkin>
+            <checkout>2013-02-04</checkout>
+        </bookingdates>
+        <additionalneeds>Breakfast, Lunch</additionalneeds>
+    </booking>
+</created-booking>
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - POST /booking › should return 500 for invalid payload" classname="api/booking-post.spec.ts" time="0.146">
+<system-out>
+<![CDATA[Created booking response: Internal Server Error
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - POST /booking › should increment booking ID for multiple bookings" classname="api/booking-post.spec.ts" time="0.288">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3724[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+Created booking response: {
+  bookingid: [33m3729[39m,
+  booking: {
+    firstname: [32m'Geoff'[39m,
+    lastname: [32m'White'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-02'[39m, checkout: [32m'2013-02-05'[39m },
+    additionalneeds: [32m'Breakfast, Lunch, Dinner'[39m
+  }
+}
+First booking id is 3724 and second booking id is 3729
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - POST /booking › should return XML response when Accept is application/xml" classname="api/booking-post.spec.ts" time="0.145">
+<system-out>
+<![CDATA[Created booking response: <?xml version='1.0'?>
+<created-booking>
+    <bookingid>3725</bookingid>
+    <booking>
+        <firstname>Geoff</firstname>
+        <lastname>White</lastname>
+        <totalprice>111</totalprice>
+        <depositpaid>true</depositpaid>
+        <bookingdates>
+            <checkin>2013-02-02</checkin>
+            <checkout>2013-02-05</checkout>
+        </bookingdates>
+        <additionalneeds>Breakfast, Lunch, Dinner</additionalneeds>
+    </booking>
+</created-booking>
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - POST /booking › should accept payload with extra parameters" classname="api/booking-post.spec.ts" time="0.153">
+<system-out>
+<![CDATA[Created booking response: {
+  bookingid: [33m3726[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - POST /booking › should return 418 for unsupported Accept header" classname="api/booking-post.spec.ts" time="0.147">
+<system-out>
+<![CDATA[Created booking response: I'm a Teapot
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="api/booking-put.spec.ts" timestamp="2026-01-21T11:08:23.542Z" hostname="chromium" tests="7" failures="0" skipped="1" time="2.495" errors="0">
+<testcase name="Restful Booker - PUT /booking › should return 403 without token" classname="api/booking-put.spec.ts" time="0.278">
+<system-out>
+<![CDATA[Token is: 39caafc6da11241
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - PUT /booking › should return 403 with invalid credentials" classname="api/booking-put.spec.ts" time="0.61">
+<system-out>
+<![CDATA[Token is: e4af543ee20fd07
+Created booking response: {
+  bookingid: [33m3733[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - PUT /booking › should update booking successfully" classname="api/booking-put.spec.ts" time="0.458">
+<system-out>
+<![CDATA[Token is: 81fc1939ae5fc2d
+Created booking response: {
+  bookingid: [33m3731[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - PUT /booking › should update booking with Basic Auth" classname="api/booking-put.spec.ts" time="0.436">
+<system-out>
+<![CDATA[Token is: ff038f1a11336fa
+Created booking response: {
+  bookingid: [33m3732[39m,
+  booking: {
+    firstname: [32m'Sally'[39m,
+    lastname: [32m'Brown'[39m,
+    totalprice: [33m111[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2013-02-01'[39m, checkout: [32m'2013-02-04'[39m },
+    additionalneeds: [32m'Breakfast, Lunch'[39m
+  }
+}
+After put call booking looks like this: 
+ {
+  firstname: [32m'Geoff'[39m,
+  lastname: [32m'White'[39m,
+  totalprice: [33m111[39m,
+  depositpaid: [33mtrue[39m,
+  bookingdates: { checkin: [32m'2013-02-02'[39m, checkout: [32m'2013-02-05'[39m },
+  additionalneeds: [32m'Breakfast, Lunch, Dinner'[39m
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - PUT /booking › should return 405 for non-existent booking" classname="api/booking-put.spec.ts" time="0.284">
+<system-out>
+<![CDATA[Token is: 9787a2ed1c8d5f7
+]]>
+</system-out>
+</testcase>
+<testcase name="Restful Booker - PUT /booking › should update with XML payload" classname="api/booking-put.spec.ts" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Restful Booker - PUT /booking › should return XML response when Accept is application/xml" classname="api/booking-put.spec.ts" time="0.429">
+<system-out>
+<![CDATA[Token is: 1352aebbbfadb21
+Created booking response: <?xml version='1.0'?>
+<created-booking>
+    <bookingid>3735</bookingid>
+    <booking>
+        <firstname>Sally</firstname>
+        <lastname>Brown</lastname>
+        <totalprice>111</totalprice>
+        <depositpaid>true</depositpaid>
+        <bookingdates>
+            <checkin>2013-02-01</checkin>
+            <checkout>2013-02-04</checkout>
+        </bookingdates>
+        <additionalneeds>Breakfast, Lunch</additionalneeds>
+    </booking>
+</created-booking>
+Response is: 
+ <?xml version='1.0'?>
+<booking>
+    <firstname>Geoff</firstname>
+    <lastname>White</lastname>
+    <totalprice>111</totalprice>
+    <depositpaid>true</depositpaid>
+    <bookingdates>
+        <checkin>2013-02-02</checkin>
+        <checkout>2013-02-05</checkout>
+    </bookingdates>
+    <additionalneeds>Breakfast, Lunch, Dinner</additionalneeds>
+</booking>
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="api/health.spec.ts" timestamp="2026-01-21T11:08:23.542Z" hostname="chromium" tests="2" failures="0" skipped="0" time="0.294" errors="0">
+<testcase name="Restful Booker - Health Checks › should respond to /ping with 201" classname="api/health.spec.ts" time="0.14">
+</testcase>
+<testcase name="Restful Booker - Health Checks › should return 404 for non-existent routes" classname="api/health.spec.ts" time="0.154">
+</testcase>
+</testsuite>
+</testsuites>
