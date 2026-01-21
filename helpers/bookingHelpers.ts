@@ -233,6 +233,22 @@ export class BookingHelpers {
                 'Cookie': `token=${token}`
             }
         });
+        const responseBody = await response.text();
+        console.log('Response is:', responseBody);
+        return response;
+    }
+
+    async deleteBookingWithString(id: string, token: string) {
+        const response = await this.request.delete(`${this.baseURL}/booking/${id}`, {
+            headers: {
+                'Cookie': `token=${token}`
+            }
+        });
+        console.log("STATUS:", response.status());
+        console.log("OK:", response.ok());
+        console.log("HEADERS:", response.headers());
+        const responseBody = await response.text();
+        console.log('Response is:', responseBody);
         return response;
     }
 

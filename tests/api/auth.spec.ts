@@ -1,21 +1,16 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "../../testSetup/testWithTestrail";
 import { BookingHelpers, AuthResponse } from '../../helpers/bookingHelpers';
 import { allure } from 'allure-playwright';
 import { extractCaseId } from "../../helpers/extractCaseId";
 import { addResultForCase } from "../../testrail/testrailService";
+import testData from '../../resources/testData.json'
+import { formatTestrailError } from "../../helpers/formatTestrailError";
 
 test.describe('Restful Booker - POST /auth', () => {
     let helpers: BookingHelpers;
 
     test.beforeEach(async ({ request }) => {
         helpers = new BookingHelpers(request);
-    });
-
-    test.afterEach(async ({ }, testInfo) => {
-        const caseId = extractCaseId(testInfo.title);
-        if (caseId) {
-            await addResultForCase(caseId, testInfo.status === "passed", testInfo.error?.message ?? "");
-        }
     });
 
     test('C45 - Successful Authentication with Valid Credentials', async ({ request }) => {
@@ -46,7 +41,80 @@ test.describe('Restful Booker - POST /auth', () => {
 
         await allure.step('Verify errored response body', async () => {
             expect(response.status()).toBe(200);
-            expect(body.reason).toBe('Bad credentials');
+            if (body.reason !== "Bad credentials") {
+                throw new Error(
+                    `Expected auth error "Bad credentials" but received "${body.reason}"`
+                );
+            }
+        });
+    });
+
+    test('C47 - Authentication Failure with Missing Credentials', async ({ request }) => {
+        const response = await request.post(`${helpers.baseURL}/auth`, {
+        });
+        const body: AuthResponse = await response.json();
+
+        await allure.step('Verify errored response body', async () => {
+            expect(response.status()).toBe(200);
+            if (body.reason !== "Bad credentials") {
+                throw new Error(
+                    `Expected auth error "Bad credentials" but received "${body.reason}"`
+                );
+            }
+            console.log('Response body is: ', body.reason)
+        });
+    });
+
+    test('C48 - Authentication with Empty Credentials', async ({ request }) => {
+        const response = await request.post(`${helpers.baseURL}/auth`, {
+            data: { username: '', password: '' }
+        });
+        const body: AuthResponse = await response.json();
+
+        await allure.step('Verify errored response body', async () => {
+            expect(response.status()).toBe(200);
+            if (body.reason !== "Bad credentials") {
+                throw new Error(
+                    `Expected auth error "Bad credentials" but received "${body.reason}"`
+                );
+            }
+        });
+    });
+
+    test('C49 - Authentication with Special Characters in Credentials', async ({ request }) => {
+        const response = await request.post(`${helpers.baseURL}/auth`, {
+            data: {
+                username: '351-.,?', password: ',./`=-'
+            }
+        });
+        const body: AuthResponse = await response.json();
+
+        await allure.step('Verify errored response body', async () => {
+            expect(response.status()).toBe(200);
+            if (body.reason !== "Bad credentials") {
+                throw new Error(
+                    `Expected auth error "Bad credentials" but received "${body.reason}"`
+                );
+            }
+        });
+    });
+
+    test('C50 - Authentication with Long in Credentials', async ({ request }) => {
+        const response = await request.post(`${helpers.baseURL}/auth`, {
+            data: {
+                username: testData.longCharactersWord, password: testData.longCharactersWord
+            }
+        });
+        const body: AuthResponse = await response.json();
+
+        await allure.step('Verify errored response body', async () => {
+            expect(response.status()).toBe(200);
+            if (body.reason !== "Bad credentials") {
+                throw new Error(
+                    `Expected auth error "Bad credentials" but received "${body.reason}"`
+                );
+            }
+            console.log('Response body is: ', body.reason)
         });
     });
 });
