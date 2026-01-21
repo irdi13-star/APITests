@@ -5,4 +5,11 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-/playwright/.auth/
+/playwright/.auth/allure-results/
+/allure-report/
+/allure-results
+test-results/
+playwright-report/
+.env
+.env*
+
