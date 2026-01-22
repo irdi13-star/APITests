@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "../../testSetup/testWithTestrail";
 import { BookingHelpers, CreateBookingResponse } from '../../helpers/bookingHelpers';
 import { payload1, payload2, payload3, buildDynamicPayload } from '../../fixtures/payloads';
 import { XMLParser } from 'fast-xml-parser';
@@ -35,7 +35,6 @@ test.describe('Restful Booker - GET /booking', () => {
         expect(response.status()).toBe(200);
         expect(bookings[0].bookingid).toBeGreaterThan(0);
         console.log(bookings)
-        //{ bookingid: 287 }, { bookingid: 147 }, { bookingid: 493 } 
     });
 
     test('should filter bookings by lastname', async () => {
@@ -136,7 +135,6 @@ test.describe('Restful Booker - GET /booking', () => {
         const body = await response.text();
 
         expect(response.status()).toBe(200);
-        // expect(response.headers()['content-type']).toContain('application/xml');
         expect(body.trim().startsWith('<?xml')).toBeTruthy();
 
         const parser = new XMLParser();
@@ -180,4 +178,11 @@ test.describe('Restful Booker - GET /booking', () => {
         helpers.assertBookingStructure(booking);
         expect(booking).toEqual(payload);
     });
+    
+    // test('should validate booking structure (dynamic testData)', async () => {
+    //     const details = buildDynamicPayload();
+    //     const createBooking = await helpers.createBookingJsonAndValidateIt(details);
+
+    //     helpers.verifyBookingById(createBooking.bookingid);
+    // });
 });

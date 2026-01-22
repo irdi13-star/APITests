@@ -4,6 +4,13 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
+env:
+  BASE_URL : ${{secrets.BASE_URL}}
+  TESTRAIL_BASE_URL : ${{secrets.TESTRAIL_BASE_URL}}
+  TESTRAIL_EMAIL : ${{secrets.TESTRAIL_EMAIL}}
+  TESTRAIL_API_KEY : ${{secrets.TESTRAIL_API_KEY}}
+  TESTRAIL_RUN_ID : ${{secrets.TESTRAIL_RUN_ID}}
 jobs:
   test:
     timeout-minutes: 20
