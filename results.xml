@@ -1,16 +1,26 @@
-<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="3.363026999999769">
-<testsuite name="api/health.spec.ts" timestamp="2026-01-21T13:17:05.773Z" hostname="chromium" tests="2" failures="0" skipped="0" time="2.43" errors="0">
-<testcase name="Restful Booker - Health Checks › C97 - should respond to /ping with 201" classname="api/health.spec.ts" time="1.559">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="2.0281949999928472">
+<testsuite name="api/booking-get.spec.ts" timestamp="2026-01-22T08:59:21.084Z" hostname="chromium" tests="1" failures="0" skipped="0" time="0.835" errors="0">
+<testcase name="Restful Booker - GET /booking › should validate booking structure manually (dynamic testData)" classname="api/booking-get.spec.ts" time="0.835">
 <system-out>
-<![CDATA[[LOG] Response Text:
-Created
-]]>
-</system-out>
-</testcase>
-<testcase name="Restful Booker - Health Checks › C98 - should return 404 for non-existent routes" classname="api/health.spec.ts" time="0.871">
-<system-out>
-<![CDATA[[LOG] Response Text:
-Not Found
+<![CDATA[Created booking response: {
+  bookingid: [33m4668[39m,
+  booking: {
+    firstname: [32m'Edison'[39m,
+    lastname: [32m'Larson'[39m,
+    totalprice: [33m833[39m,
+    depositpaid: [33mtrue[39m,
+    bookingdates: { checkin: [32m'2026-01-23'[39m, checkout: [32m'2026-01-28'[39m },
+    additionalneeds: [32m'Breakfast'[39m
+  }
+}
+Booking is: {
+  firstname: [32m'Edison'[39m,
+  lastname: [32m'Larson'[39m,
+  totalprice: [33m833[39m,
+  depositpaid: [33mtrue[39m,
+  bookingdates: { checkin: [32m'2026-01-23'[39m, checkout: [32m'2026-01-28'[39m },
+  additionalneeds: [32m'Breakfast'[39m
+}
 ]]>
 </system-out>
 </testcase>

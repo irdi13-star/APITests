@@ -90,26 +90,6 @@ export class BookingHelpers {
         return payload;
     }
 
-    // async createBooking(payload: Booking, acceptHeader: string = 'application/json', options?: {
-        
-    //     expectedStatus?: number;
-    // }): Promise<CreateBookingResponse> {
-    //     const response = await this.request.post(`${this.baseURL}/booking`, {
-    //         data: payload,
-    //         headers: {
-    //             'Accept': acceptHeader
-    //         }
-    //     });
-
-    //     const expectedStatus = options?.expectedStatus ?? 200;
-    //     expect(response.status()).toBe(expectedStatus);
-
-    //     const responseBody = await response.json();
-    //     console.log('Created booking id is:', responseBody);
-     
-    //     return responseBody as CreateBookingResponse;
-    // }
-
     async createBooking(
         payload: Booking,
         acceptHeader: string = 'application/json',
@@ -125,10 +105,8 @@ export class BookingHelpers {
 
         let responseBody: any;
         try {
-            // încearcă să parsezi JSON
             responseBody = await response.json();
         } catch {
-            // fallback la text pentru erori (500, 400 etc.)
             responseBody = await response.text();
         }
 
@@ -142,18 +120,13 @@ export class BookingHelpers {
         return response as CreateBookingResponse;
     }
 
-    // async createBookingXml(payload: Booking, options?: { expectedStatus?: number }) {
-    //     const response = await this.createBooking(payload, 'application/xml', options);
-    //     return response as string;
-    // }
-
     async createBookingXmlAndValidateIt(payload: Booking): Promise<{ bookingid: number; booking: Booking }> {
         const xmlResponse = await this.createBooking(payload, 'application/xml');
 
         const parser = new XMLParser();
         const parsed = parser.parse(xmlResponse as string);
 
-        const root = parsed['created-booking']; // root element
+        const root = parsed['created-booking'];
 
         return {
             bookingid: Number(root.bookingid),
@@ -278,7 +251,7 @@ export class BookingHelpers {
         expect(booking.bookingdates).toHaveProperty('checkin');
         expect(booking.bookingdates).toHaveProperty('checkout');
 
-        // Validare tipuri
+        // Validate types
         expect(typeof booking.firstname).toBe('string');
         expect(typeof booking.lastname).toBe('string');
         expect(typeof booking.totalprice).toBe('number');
@@ -286,7 +259,7 @@ export class BookingHelpers {
         expect(typeof booking.bookingdates.checkin).toBe('string');
         expect(typeof booking.bookingdates.checkout).toBe('string');
 
-        // Validare format date
+        // Validate format date
         expect(booking.bookingdates.checkin).toMatch(/^\d{4}-\d{2}-\d{2}$/);
         expect(booking.bookingdates.checkout).toMatch(/^\d{4}-\d{2}-\d{2}$/);
 
@@ -304,17 +277,14 @@ export class BookingHelpers {
         this.assertBookingStructure(response.booking);
     }
 
-    // Combined validation
     async verifyBookingById(id: number, expectedData?: Partial<Booking>) {
         const response = await this.getBooking(id);
         const booking = await response.json();
 
         expect(response.status()).toBe(200);
 
-        // Correct structure
         this.assertBookingStructure(booking);
 
-        // Validate Zod schema (optional)
         try {
             this.validateBookingSchema(booking);
         } catch (error) {
@@ -322,7 +292,6 @@ export class BookingHelpers {
             throw error;
         }
 
-        // Validate values
         if (expectedData) {
             if (expectedData.firstname) expect(booking.firstname).toBe(expectedData.firstname);
             if (expectedData.lastname) expect(booking.lastname).toBe(expectedData.lastname);
