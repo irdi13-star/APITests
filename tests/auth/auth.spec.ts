@@ -1,7 +1,7 @@
 // tests/api/auth/auth.spec.ts
 import { test, expect } from '../../testSetup/testWithTestrail';
 import { AuthAPI } from '../../src/api/auth/AuthAPI';
-import testData from '../../resources/testData.json'
+import testData from '../../src/resources/testData.json'
 
 test.describe('Restful Booker - Authentication', () => {
     let authAPI: AuthAPI;
