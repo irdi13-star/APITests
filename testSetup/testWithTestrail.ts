@@ -1,8 +1,8 @@
 import { test as base } from "@playwright/test";
-import { extractCaseId } from "../helpers/extractCaseId";
+import { extractCaseId } from "../src/helpers/extractCaseId";
 import { addResultForCase } from "../testrail/testrailService";
-import { formatTestrailError } from "../helpers/formatTestrailError";
-import { TestLogger } from "../helpers/testLogger";
+import { formatTestrailError } from "../src/helpers/formatTestrailError";
+import { TestLogger } from "../src/helpers/logger";
 
 export const test = base.extend<{
     logger: TestLogger;
