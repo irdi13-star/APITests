@@ -1,4 +1,4 @@
-import { Booking } from '../helpers/bookingHelpers';
+import { Booking } from '../models/Booking';
 import { faker } from '@faker-js/faker';
 import { DateTime } from 'luxon';
 
@@ -6,7 +6,7 @@ export const payload1: Booking = {
     firstname: 'Sally',
     lastname: 'Brown',
     totalprice: 111,
-    depositpaid: true,
+    depositpaid: false,
     additionalneeds: 'Breakfast, Lunch',
     bookingdates: {
         checkin: '2013-02-01',
@@ -37,18 +37,6 @@ export const payload3: Booking = {
         checkout: '2013-02-06'
     }
 };
-
-// export const dynamicPayload: Booking = {
-//     firstname: faker.person.firstName(),
-//     lastname: faker.person.lastName(),
-//     totalprice: faker.number.int(1000),
-//     depositpaid: true,
-//     additionalneeds: 'Breakfast',
-//     bookingdates: {
-//         checkin: DateTime.now().toFormat('yyyy-MM-dd'),
-//         checkout: DateTime.now().plus({ day: 12}).toFormat('yyyy-MM-dd')
-//     }
-// };
 
 export function buildDynamicPayload(): Booking {
     const checkin = DateTime.now().plus({ days: 1 });
